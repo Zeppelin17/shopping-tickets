@@ -3,3 +3,4 @@ Lib
 Scripts
 pyenv.cfg
 __pycache__
+.vscode
