@@ -40,7 +40,7 @@ class TicketViewSet(viewsets.ModelViewSet):
             year = int(self.request.query_params.get("year", 0))
             month = int(self.request.query_params.get("month", 0))
         except ValueError:
-            year = (False,)
+            year = False
             month = False
 
         if year:
