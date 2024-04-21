@@ -29,22 +29,26 @@ class TicketViewSet(viewsets.ModelViewSet):
         A function that retrieves a queryset based on the query parameters.
 
         Parameters:
-            - without query params: returns all Ticket objects
-            - current_month: returns all Ticket objects for the current month.
-                - possible values: [0, 1]
+            - year: year to get tickets from
+            - month: month to get tickets from
 
         Returns:
             queryset: a queryset of Ticket objects based on the request parameters
         """
+        filters = {}
         try:
-            only_current_month = int(self.request.query_params.get("current_month", 0))
+            year = int(self.request.query_params.get("year", 0))
+            month = int(self.request.query_params.get("month", 0))
         except ValueError:
-            only_current_month = 0
+            year = (False,)
+            month = False
 
-        if only_current_month == 1:
-            queryset = Ticket.objects.filter(date__month=datetime.now().month)
-        else:
-            queryset = Ticket.objects.all()
+        if year:
+            filters["date__year"] = year
+        if month:
+            filters["date__month"] = month
+
+        queryset = Ticket.objects.filter(**filters)
 
         return queryset
 
