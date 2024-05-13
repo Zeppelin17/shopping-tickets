@@ -14,6 +14,6 @@ services:
   web_run:
     extends:
       service: web
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver
     ports:
       - "8000:8000"
