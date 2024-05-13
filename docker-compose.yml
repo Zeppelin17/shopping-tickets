@@ -1,5 +1,6 @@
 services:
   web:
+    image: shopping-tickets-back
     build: .
     ports:
       - '8000:8000'
@@ -10,4 +11,5 @@ services:
       - migration
   
   migration:
+    image: shopping-tickets-back
     command: python manage.py migrate
