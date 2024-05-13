@@ -1,7 +1,6 @@
 services:
   web:
     build: .
-    container_name: shopping-tickets-back
     ports:
       - '8000:8000'
     volumes:
