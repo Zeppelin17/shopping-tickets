@@ -17,14 +17,11 @@ services:
 
   redis:
     image: redis:7
-    
+
   nginx:
     build: ./nginx
     restart: always
     ports:
       - ${NGINX_PORT}:80
-    volumes:
-      - static_volume:/code/staticfiles
-      - media_volume:/code/mediafiles
     depends_on:
       - web
