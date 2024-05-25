@@ -18,10 +18,33 @@ services:
   redis:
     image: redis:7
 
-  nginx:
-    build: ./nginx
+  proxy:
+    build: ./docker/proxy
     restart: always
+    env_file:
+      - ./.env
     ports:
-      - ${NGINX_PORT}:80
+      - 80:80
+      - 443:443
+    volumes:
+      - certbot-web:/vol/www
+      - proxy-dhparams:/vol/proxy
+      - certbot-certs:/etc/letsencrypt
     depends_on:
       - web
+  
+  certbot:
+    build: ./docker/certbot
+    command: echo "Skipping..."
+    env_file:
+      - ./.env
+    volumes:
+      - certbot-web:/vol/www
+      - certbot-certs:/etc/letsencrypt/
+    depends_on:
+      - proxy
+  
+volumes:
+  certbot-web:
+  proxy-dhparams:
+  certbot-certs:
