@@ -6,6 +6,7 @@ ENV PYTHONUNBUFFERED 1
 
 
 WORKDIR /app
+ENV PATH="${PATH}:/app"
 
 COPY requirements.txt .
 
