@@ -1,6 +1,6 @@
 FROM nginx:stable-alpine
 
-COPY ./nginx/* /etc/nginx
+COPY ./nginx/* /etc/nginx/
 COPY ./run.sh /run.sh
 
 ENV APP_HOST=shopping_tickets
