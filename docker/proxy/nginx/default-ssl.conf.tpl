@@ -28,7 +28,7 @@ server {
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 
     location / {
-        uwsgi_pass              ${APP_HOST}:${APP_PORT};
+        # uwsgi_pass              ${APP_HOST}:${APP_PORT};
         include                 /etc/nginx/uwsgi_params;
         client_max_body_size    10M;
     }
