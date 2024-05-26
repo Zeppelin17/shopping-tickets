@@ -6,12 +6,12 @@ services:
     env_file:
       - ./.env
     expose:
-      - 8000
+      - 9000
     volumes:
       - .:/data
     command: > 
       bash -c "python manage.py migrate
-      && gunicorn shopping_tickets.wsgi:application --bind 0.0.0.0:8000"
+      && gunicorn shopping_tickets.wsgi:application --bind 0.0.0.0:9000"
     depends_on:
       - redis
 
@@ -19,7 +19,8 @@ services:
     image: redis:7
 
   proxy:
-    build: ./docker/proxy
+    build:
+      context: ./docker/proxy
     restart: always
     env_file:
       - ./.env
@@ -34,7 +35,8 @@ services:
       - web
   
   certbot:
-    build: ./docker/certbot
+    build:
+      context: ./docker/certbot
     command: echo "Skipping..."
     env_file:
       - ./.env
