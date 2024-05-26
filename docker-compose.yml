@@ -1,5 +1,6 @@
 services:
   web:
+    container_name: web
     image: shoppingtickets
     build: .
     restart: always
@@ -16,9 +17,11 @@ services:
       - redis
 
   redis:
+    container_name: redis
     image: redis:7
 
   proxy:
+    container_name: proxy
     build:
       context: ./docker/proxy
     restart: always
@@ -35,6 +38,7 @@ services:
       - web
   
   certbot:
+    container_name: certbot
     build:
       context: ./docker/certbot
     command: echo "Skipping..."
