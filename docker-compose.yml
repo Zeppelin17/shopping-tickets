@@ -10,48 +10,6 @@ services:
       - 9000
     volumes:
       - .:/data
-    command: > 
+    command: >
       bash -c "python manage.py migrate
       && gunicorn shopping_tickets.wsgi:application --bind 0.0.0.0:9000"
-    depends_on:
-      - redis
-
-  redis:
-    container_name: redis
-    image: redis:7
-
-  proxy:
-    container_name: proxy
-    build:
-      context: ./docker/proxy
-    restart: always
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - certbot-web:/vol/www
-      - proxy-dhparams:/vol/proxy
-      - certbot-certs:/etc/letsencrypt
-    environment:
-      - DOMAIN=${DOMAIN}
-    depends_on:
-      - web
-  
-  certbot:
-    container_name: certbot
-    build:
-      context: ./docker/certbot
-    command: echo "Skipping..."
-    environment:
-      - EMAIL=${EMAIL}
-      - DOMAIN=${DOMAIN}
-    volumes:
-      - certbot-web:/vol/www
-      - certbot-certs:/etc/letsencrypt/
-    depends_on:
-      - proxy
-  
-volumes:
-  certbot-web:
-  proxy-dhparams:
-  certbot-certs:
