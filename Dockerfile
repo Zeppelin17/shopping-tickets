@@ -20,5 +20,4 @@ ENV DEBUG=False
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONUNBUFFERED 1
 
-CMD []
 CMD ["gunicorn", "--chdir", "shopping_tickets", "--bind", "0.0.0.0:8000", "shopping_tickets.wsgi:application"]
