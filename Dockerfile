@@ -9,7 +9,7 @@ EXPOSE 8000
 
 ENV DJANGO_SETTINGS_MODULE=shopping_tickets.settings.production
 ENV SECRET_KEY=ep=*gxn9xwb@v!owzlo+8-g8_c3860v98043u5^!pw)0pyd(&^
-ENV ALLOWED_HOSTS=.localhost, .zeppelin.dev, *
+ENV ALLOWED_HOSTS=".localhost, .zeppelin.dev, *"
 ENV DEBUG=False
 
 ENV PYTHONUNBUFFERED 1
