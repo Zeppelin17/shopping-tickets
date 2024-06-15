@@ -1,10 +1,10 @@
 FROM python:3.11
 
-WORKDIR /app
+WORKDIR /shopping_tickets
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-VOLUME ["/app/data"]
+VOLUME ["/shopping_tickets/data"]
 EXPOSE 8000
 
 ENV DJANGO_SETTINGS_MODULE=shopping_tickets.settings.production
@@ -15,4 +15,4 @@ ENV DEBUG=False
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONUNBUFFERED 1
 
-CMD ["gunicorn", "--chdir", "shopping-tickets-back", "--bind", "0.0.0.0:8000", "shopping_tickets.wsgi:application"]
+CMD ["gunicorn", "--chdir", "shopping_tickets", "--bind", "0.0.0.0:8000", "shopping_tickets.wsgi:application"]
