@@ -6,6 +6,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 WORKDIR /shopping_tickets
+RUN ls
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 
