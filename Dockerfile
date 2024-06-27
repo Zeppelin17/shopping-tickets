@@ -9,10 +9,10 @@ WORKDIR /shopping_tickets
 RUN ls
 RUN python manage.py makemigrations
 RUN python manage.py migrate
-RUN python manage.py collectstatic
+RUN python manage.py collectstatic --noinput
 
-VOLUME ["/shopping_tickets/data"]
-VOLUME ["/shopping_tickets/staticfiles"]
+VOLUME ["/data"]
+VOLUME ["/staticfiles"]
 
 EXPOSE 8000
 
