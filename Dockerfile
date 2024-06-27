@@ -11,8 +11,8 @@ RUN python manage.py makemigrations
 RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
-VOLUME ["/data"]
-VOLUME ["/staticfiles"]
+VOLUME ["/shopping_tickets/data"]
+VOLUME ["/shopping_tickets/shopping_tickets/staticfiles"]
 
 EXPOSE 8000
 
