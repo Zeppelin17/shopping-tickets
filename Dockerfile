@@ -9,8 +9,11 @@ WORKDIR /shopping_tickets
 RUN ls
 RUN python manage.py makemigrations
 RUN python manage.py migrate
+RUN python manage.py collectstatic
 
 VOLUME ["/shopping_tickets/data"]
+VOLUME ["/shopping_tickets/staticfiles"]
+
 EXPOSE 8000
 
 ENV DJANGO_SETTINGS_MODULE=shopping_tickets.settings.production
